@@ -26,6 +26,12 @@
             data:{name:nam,price:dam},
             success:function(res){
 
+              if(res.status == 'success'){
+                $('#addModal').modal('hide');
+                $('#addProdcutModal')[0].reset();
+                $('.table').load(location.href+' .table');
+              }
+
             },error:function(err){
 
               let error = err.responseJSON;

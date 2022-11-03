@@ -10,7 +10,9 @@ class ProductController extends Controller
 {
     public function product(){
 
-        return view('product');
+        $products = Product::latest()->paginate(5); 
+
+        return view('product',compact('products'));
 
     }
 
@@ -38,6 +40,10 @@ class ProductController extends Controller
         $product->price = $request->price;
 
         $product->save();
+
+        return response()->json([
+            'status'=>'success',
+        ]);
 
 
     }
